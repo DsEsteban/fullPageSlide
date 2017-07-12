@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Brunch</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js"></script>
+  <script>require('initialize');</script>
+  <style>
+    html,body{
+      margin: 0px;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+    }
+    body {
+      display: unset;
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+    .uno{
+      background-color: black;
+    }
+    .dos{
+      background-color: #333;
+    }
+
+    h1, h2{
+      color: white;
+    }  
+    .container-slider{
+      box-sizing: border-box;
+    }
+    .parafernalia-bottom-right{
+      max-height: 90px;
+      max-width: 25px;
+      bottom: 10px;
+      right: 15px;
+      position: fixed;
+    }
+    .section-content{
+      height: 100vh;
+      width: 100vw;
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .row-content{
+      width: 100%;
+    }
+    #btn-back, #btn-next {
+      position: fixed;
+      max-width: 100px;
+      z-index: 1;
+
+      cursor: pointer;
+      top: 50vh;
+      transform: translateY(-50%);
+
+    }
+    #btn-back{
+      left: 0;
+      display: none;
+    }#btn-next{
+      right: 0;
+      transform-origin: 50% 50%;
+      transform: translateY(-50%) rotate(180deg);
+    }
+    @media (max-width: 767px) {
+      .container-slider{
+        display: block !important;
+      }
+      .group-dispair-full > img{
+        max-width: 65vw;
+        height: auto;
+      }
+      .group-dispair-half > img {
+        max-height: 40vh;
+        width: auto;
+      }
+      .group > img {
+        max-width: 65vw;
+      }
+    }
+    @media (min-width: 768px) {
+      .container-slider{
+        display: -webkit-flex !important;
+        display: flex !important;
+        transform: translateX(0px);
+        transition: transform 1s;
+        transition-timing-function: ease-out;
+      }
+      .row-content{
+        width: 100vw;
+      }
+      .no-margin-top{
+        margin-top: 0px;
+      }
+      .pic-logo{
+        width: calc(40vw);
+        max-width: 620px;
+      }
+      .pic-logo-1{
+        width: calc(15vw);
+        max-width: 620px;
+      }
+      .wrap-groups{
+        display: -webkit-flex;
+        -webkit-flex-direction: row;
+        display: flex;
+        justify-content: center;
+      }
+      .wrap-groups-dispair{
+        display: -webkit-flex;
+        -webkit-flex-direction: row;
+        -webkit-justify-content: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+      .group{
+        display: -webkit-flex;
+        -webkit-flex-direction: column;
+        -webkit-align-items: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+      .group > img{
+        width: 35vw;
+      }
+      .wrap-groups-dispair img {
+        max-height: 480px;
+      }
+      .group-dispair-full > img{
+        max-width: 40vw;
+        height: auto;
+      }
+      .group-dispair-half > img {
+        max-height: 30vw;
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <img src="/arrow-left.png" id = 'btn-next'>
+  <img src="/arrow-left.png" id = 'btn-back'>
+
+  <div class="container-slider">
+    <div class="section-content">
+      <div class="row-content">
+        <div class="brunch">
+          <h1>STOP IMAGINING</h1>
+        </div>
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="row-content">
+        <h1>STOP IMAGINING</h1>
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="row-content">
+        <h2>THE COMPLEX</h2>
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="row-content">
+        <h2>THE COMPLEX</h2>
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="row-content">
+        <h2>THE SUITES</h2>
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="row-content">
+        <h2>THE SUITES</h2>
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="row-content">
+        <h2>FEATURES</h2>
+        <p>
+          38 SUITES UNITS FROM 1,850 TO 2,25</br>
+          PLUS 250 sq.ft MEZZANINE</br>
+          COMPLETELY AUTOMATED UNITS</br>
+          FULL ENTERTAINMENT SYSTEM</br>
+          SECURITY PACKAGE</br>
+          GATED COMMUNITY WITH THE STAGE OF THE ART SECURITY 24/7</br>
+          CONCIERGE SERVICES</br>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    (function(){
+      var size_screen = -1*window.innerWidth;
+      var clickNumber = 0;
+      var init = true,
+          end = false;
+      var slidesNum = document.querySelectorAll('.container-slider > div').length;
+      document.getElementById('btn-next').addEventListener('click', function(){
+        clickNumber += 1;
+        size_ = size_screen*clickNumber;
+        // optimizar
+        if (clickNumber > 0) {
+          document.getElementById('btn-back').style.display = 'unset';
+        }
+        if (clickNumber > (slidesNum - 2) ) {
+          document.getElementById('btn-next').style.display = 'none';
+        }
+        document.getElementsByClassName('container-slider')[0].style.transform = "translateX("+size_+"px)";
+        return false;
+      });
+      document.getElementById('btn-back').addEventListener('click', function(){
+        clickNumber -= 1;
+        size_ = size_screen*clickNumber;
+        // optimizar
+        if (clickNumber < 1) {
+          document.getElementById('btn-back').style.display = 'none';
+        }
+        if (clickNumber < slidesNum) {
+          document.getElementById('btn-next').style.display = 'unset';
+        }
+        document.getElementsByClassName('container-slider')[0].style.transform = "translateX("+size_+"px)";
+        return false;
+      });
+      function debounce(func, wait, immediate) {
+        var timeout;
+        return function() {
+          var context = this, args = arguments;
+          var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+          };
+          var callNow = immediate && !timeout;
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+          if (callNow) func.apply(context, args);
+        };
+      };
+      var myEfficientFn = debounce(function() {
+        size_screen = (-1)*window.innerWidth;
+        size_ = size_screen*clickNumber;
+        document.getElementsByClassName('container-slider')[0].style.transform = "translateX("+size_+"px)";
+        if( (-1)*size_screen > 767){
+          document.getElementsByClassName('container-slider')[0].style.transform = "translateX("+size_+"px)";
+        } else {
+          // version no optimizada
+          document.getElementsByClassName('container-slider')[0].style.transform = "translateX(0px)";
+        }
+      }, 250);
+      window.addEventListener('resize', myEfficientFn);
+    })();
+  </script>
+</body>

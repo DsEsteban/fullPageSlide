@@ -1,0 +1,25 @@
+{
+  "name": "fullpageslide",
+  "version": "1.0.0",
+  "description": "A lightweight library to a fullpage slide plugin",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DsEsteban/fullPageSlide.git"
+  },
+  "keywords": [
+    "fullpage",
+    "slide",
+    "library",
+    "js"
+  ],
+  "author": "Dennis Perez <dennis.esteban.89@gmail.com> (http://www.devclub.com.ve/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DsEsteban/fullPageSlide/issues"
+  },
+  "homepage": "https://github.com/DsEsteban/fullPageSlide#readme"
+}
